@@ -4,6 +4,16 @@ import java.util.Objects;
 
 public class Dog extends Pet {
 
+    public static final String XS = "XS";
+
+    public static final String S = "S";
+
+    public static final String M = "M";
+
+    public static final String L = "L";
+
+    public static final String XL = "XL";
+
     @Override
     public String toString() {
         return "Dog {" +
@@ -28,6 +38,12 @@ public class Dog extends Pet {
 
 
     private String size;
+
+    public Dog() { }
+
+    public Dog(String size) {
+        this.size = size;
+    }
 
     public void setSize(String size) {
         this.size = size;
