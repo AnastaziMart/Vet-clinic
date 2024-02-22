@@ -1,13 +1,23 @@
 package main.java.com.magicvet.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Client {
 
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+
     private String firstName;
     private String lastName;
     private String email;
+
     private Pet pet;
+    private final LocalDateTime registrationDate = LocalDateTime.now();
+    private Location location;
+
 
     @Override
     public String toString() {
@@ -15,6 +25,8 @@ public class Client {
                 + "\n\tfirstName = " + firstName
                 + ", lastName = " + lastName
                 + ", email = " + email
+                + ", registration date = " + registrationDate.format(FORMATTER)
+                + ", location = " + location
                 + ", \n\tpet = " + pet
                 + "\n}";
     }
@@ -38,9 +50,11 @@ public class Client {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -60,8 +74,31 @@ public class Client {
     public Pet getPet() {
         return pet;
     }
-
     public void setPet(Pet pet) {
         this.pet = pet;
+
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+
+    public enum Location {
+        KRYVYI_RIH, CHARKIW, LUGANSK, UNKNOWN;
+
+        public static Location fromString (String value) {
+            for (Location location : values()) {
+                if (location.toString().equalsIgnoreCase(value)) {
+                    return location;
+                }
+            }
+            System.out.println("Unable to parse value " + value + "'. Using default value: " + UNKNOWN);
+            return UNKNOWN;
+        }
     }
 }

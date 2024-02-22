@@ -5,6 +5,8 @@ import main.java.com.magicvet.model.Pet;
 import main.java.com.magicvet.service.ClientService;
 import main.java.com.magicvet.service.PetService;
 
+import java.util.List;
+
 public class ApplicationRunner {
 
     private final ClientService clientService = new ClientService();
