@@ -39,11 +39,18 @@ public class PetService {
         System.out.print("Age: ");
         pet.setAge(Main.SCANNER.nextLine());
 
+
         System.out.print("Name: ");
         pet.setName(Main.SCANNER.nextLine());
 
+
         System.out.print("Sex (male / female): ");
         pet.setSex(Main.SCANNER.nextLine());
+
+
+        System.out.print("Health state: ");
+        pet.setHealthState(Main.SCANNER.nextLine());
+
 
 
         if (type.equals(DOG_TYPE)) {
@@ -62,7 +69,7 @@ public class PetService {
 
 
         }
-        
+
 
         return pet;
     }

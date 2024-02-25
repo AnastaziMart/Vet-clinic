@@ -13,23 +13,41 @@ public abstract class Pet {
     private String sex;
     private String age;
     private String name;
-    private String ownerName;
 
+    private String ownerName;
+    private String healthState;
     private final LocalDateTime registrationDate = LocalDateTime.now();
 
+    @Override
+    public String toString() {
+        return "Pet {"
+                + "type = " + type
+                + ", sex = " + sex
+                + ", age = " + age
+                + ", name = " + name
+                +", ownerName = " + ownerName
+                + ", healthState = " + healthState
+                + ", registrationDate = " + registrationDate.format(FORMATTER)
+                + "}";
+    }
+
     public String getType() {
+
         return type;
     }
 
     public void setType(String type) {
+
         this.type = type;
     }
 
     public String getSex() {
+
         return sex;
     }
 
     public void setSex(String sex) {
+
         this.sex = sex;
     }
 
@@ -42,37 +60,39 @@ public abstract class Pet {
     }
 
     public String getName() {
+
         return name;
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 
+    public String getHealthState() {
+        return healthState;
+    }
+
+    public void setHealthState(String healthState) {
+        this.healthState = healthState;
+    }
+
     public String getOwnerName() {
+
         return ownerName;
     }
 
     public void setOwnerName(String ownerName) {
+
         this.ownerName = ownerName;
     }
 
+
     public LocalDateTime getRegistrationDate() {
+
         return registrationDate;
     }
 
-
-    @Override
-    public String toString() {
-        return "Pet {"
-                + "type = " + type
-                + ", sex = " + sex
-                + ", age = " + age
-                + ", name = " + name
-                + ", ownerName = " + ownerName
-                + ", registrationDate = " + registrationDate.format(FORMATTER)
-                + "}";
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -83,16 +103,19 @@ public abstract class Pet {
                 && Objects.equals(sex, pet.sex)
                 && Objects.equals(age, pet.age)
                 && Objects.equals(name, pet.name)
-                && Objects.equals(ownerName, pet.ownerName);
+                && Objects.equals(ownerName, pet.ownerName)
+                && Objects.equals(healthState,pet.healthState)
+                && Objects.equals(registrationDate,pet.registrationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, sex, age, name, ownerName);
+        return Objects.hash(type, sex, age, name, ownerName, healthState, registrationDate);
     }
 
 
-    enum Age {
+
+    public enum Age {
 
         ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6),
         SEVEN(7), EIGHT(8), NINE(9), TEN(10), ELEVEN(11), TWELVE(12),
@@ -114,41 +137,41 @@ public abstract class Pet {
                     return age;
                 }
             }
-            System.out.println(("Unable to parse value '" + value + "'. Using default value: " + UNKNOWN));
+            System.out.println(( "Unable to parse value " + value + "'. Using default value: " + UNKNOWN));
             return UNKNOWN;
         }
     }
 
-    enum Health {
-        SATISFACTORY_CONDITION(1),
-        MODERATE_CONDITION(2),
-        EXTREMELY_SERIOUS_CONDITION(3),
-        TERMINAL_STATE(4),
-        UNKNOWN(5);
+            public enum HealthState {
+                HEALTHY_OR_GETTING_BETTER(1),
+                SICK(2),
+                SERIOUSLY_ILL(3),
+                TERMINAL_STATE(4),
+                UNKNOWN(0);
 
-        private final int value;
+                private final int value;
 
-        Health(int value) {
-            this.value = value;
-        }
+                HealthState(int value) {
+                    this.value = value;
+                }
 
-        public int getValue() {
-            return value;
-        }
+                public int getValue() {
+                    return value;
+                }
 
-        public static Health fromString(String value) {
-            for (Health health : values()) {
-                if (health.toString().equalsIgnoreCase(value)) {
-                    return health;
+                public static HealthState fromString(String value) {
+                    for (HealthState healthState : values()) {
+                        if (healthState.toString().equalsIgnoreCase(value)) {
+                            return healthState;
+                        }
+                    }
+                    System.out.println("Unable to parse value '" + value + "'. Using default value: " + UNKNOWN);
+                    return UNKNOWN;
                 }
             }
-            System.out.println("Unable to parse value '" + value + "'. Using default value: " + UNKNOWN);
-            return UNKNOWN;
-
         }
 
-    }
-}
+
 
 
 
