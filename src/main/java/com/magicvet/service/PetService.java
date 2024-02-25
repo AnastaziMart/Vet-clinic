@@ -5,11 +5,15 @@ import main.java.com.magicvet.model.Cat;
 import main.java.com.magicvet.model.Dog;
 import main.java.com.magicvet.model.Pet;
 
+import java.util.Scanner;
+
 public class PetService {
 
     private static final String DOG_TYPE = "dog";
 
     private static final String CAT_TYPE = "cat";
+
+    private static final String HEALTH_STATE = "stateOfHealth";
 
     public Pet registerNewPet() {
         Pet pet = null;
@@ -41,9 +45,22 @@ public class PetService {
         System.out.print("Sex (male / female): ");
         pet.setSex(Main.SCANNER.nextLine());
 
+
         if (type.equals(DOG_TYPE)) {
-            System.out.print("Size (xS / S / M / L / xxL): ");
-            ((Dog) pet).setSize(Main.SCANNER.nextLine());
+            System.out.print("Size (XS / S / M / L / XL): ");
+            String size = Main.SCANNER.nextLine();
+            ((Dog) pet).setSize(Dog.Size.valueOf(size));
+        }
+
+
+        if (type.equals(HEALTH_STATE)) {
+            System.out.println("SATISFACTORY_CONDITION(1),\n" +
+                    "            MODERATE_CONDITION(2),\n" +
+                    "            EXTREMELY_SERIOUS_CONDITION(3),\n" +
+                    "            TERMINAL_STATE(4),\n" +
+                    "            UNKNOWN(5);");
+
+
         }
         
 
