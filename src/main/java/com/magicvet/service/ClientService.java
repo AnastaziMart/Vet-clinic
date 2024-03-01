@@ -3,6 +3,7 @@ package main.java.com.magicvet.service;
 import main.java.com.magicvet.Main;
 import main.java.com.magicvet.model.Client;
 
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,7 +15,7 @@ public class ClientService {
 
 
 
-    public Client registerNewClient() {
+    public Optional<Client> registerNewClient() {
         Client client = null;
 
         System.out.println("Please provide client details.");
@@ -30,7 +31,7 @@ public class ClientService {
             System.out.println("Provided email is invalid.");
         }
 
-        return client;
+        return Optional.ofNullable(client);
     }
     private static Client buildClient(String email) {
         Client client = new Client();
