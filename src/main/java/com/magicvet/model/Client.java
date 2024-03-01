@@ -72,11 +72,11 @@ public class Client {
         return email;
     }
 
-    public List<Pet> getPet() {
+    public List<Pet> getPets() {
         return pets;
     }
 
-    public void setPet(List<Pet> pets) {
+    public void setPets(List<Pet> pets) {
         this.pets = pets;
 
     }
@@ -84,6 +84,7 @@ public class Client {
     public void addPet(Pet pet) {
         pets.add(pet);
     }
+
 
     public Location getLocation() {
         return location;
@@ -95,7 +96,7 @@ public class Client {
 
 
     public enum Location {
-        KRYVYI_RIH, CHARKIW, LUGANSK, UNKNOWN;
+        KYIV, LVIV, ODESSA, UNKNOWN;
 
         public static Location fromString (String value) {
             for (Location location : values()) {

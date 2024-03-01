@@ -39,17 +39,24 @@ public class PetService {
         System.out.print("Age: ");
         pet.setAge(Main.SCANNER.nextLine());
 
+
         System.out.print("Name: ");
         pet.setName(Main.SCANNER.nextLine());
+
 
         System.out.print("Sex (male / female): ");
         pet.setSex(Main.SCANNER.nextLine());
 
 
+        System.out.print("Health state: ");
+        pet.setHealthState(Main.SCANNER.nextLine());
+
+
+
         if (type.equals(DOG_TYPE)) {
             System.out.print("Size (XS / S / M / L / XL): ");
             String size = Main.SCANNER.nextLine();
-            ((Dog) pet).setSize(Dog.Size.valueOf(size));
+            ((Dog) pet).setSize(Dog.Size.fromString(size));
         }
 
 
@@ -62,7 +69,7 @@ public class PetService {
 
 
         }
-        
+
 
         return pet;
     }
